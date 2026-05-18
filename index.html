@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>My Site</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,159 +11,164 @@
       margin-top: 100px;
       background: #f5f5f5;
     }
-    h1 { color: #333; }
+
+    h1 {
+      color: #333;
+    }
+
+    .purchase-btn {
+      margin-top: 30px;
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #fe2c55;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .purchase-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
   </style>
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;
+    var ttq=w[t]=w[t]||[];
 
-  ttq.load('D6BH2RBC77U56TVAOMU0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
+    ttq.methods=[
+      "page","track","identify","instances","debug","on","off",
+      "once","ready","alias","group","enableCookie",
+      "disableCookie","holdConsent","revokeConsent","grantConsent"
+    ];
+
+    ttq.setAndDefer=function(t,e){
+      t[e]=function(){
+        t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+      }
+    };
+
+    for(var i=0;i<ttq.methods.length;i++){
+      ttq.setAndDefer(ttq,ttq.methods[i]);
+    }
+
+    ttq.instance=function(t){
+      for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++){
+        ttq.setAndDefer(e,ttq.methods[n]);
+      }
+      return e
+    };
+
+    ttq.load=function(e,n){
+      var r="https://analytics.tiktok.com/i18n/pixel/events.js",
+      o=n&&n.partner;
+
+      ttq._i=ttq._i||{},
+      ttq._i[e]=[],
+      ttq._i[e]._u=r,
+      ttq._t=ttq._t||{},
+      ttq._t[e]=+new Date,
+      ttq._o=ttq._o||{},
+      ttq._o[e]=n||{};
+
+      n=document.createElement("script");
+      n.type="text/javascript";
+      n.async=!0;
+      n.src=r+"?sdkid="+e+"&lib="+t;
+
+      e=document.getElementsByTagName("script")[0];
+      e.parentNode.insertBefore(n,e)
+    };
+
+    ttq.load('D6BH2RBC77U56TVAOMU0');
+    ttq.page();
+
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+
 </head>
+
 <body>
+
   <h1>Hello 👋</h1>
   <p>This is my test site.</p>
+
+  <!-- Purchase Form -->
+  <form id="purchaseForm">
+    <button type="submit" class="purchase-btn">
+      Purchase
+    </button>
+  </form>
+
   <script>
-// add this before event code to all pages where PII data postback is expected and appropriate 
-ttq.identify({
-	"email": "<hashed_email_address>", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
-	"phone_number": "<hashed_phone_number>", // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
-	"external_id": "<hashed_external_id>" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs.It must be hashed with SHA-256 on the client side.
-});
+    document.getElementById("purchaseForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-ttq.track('ViewContent', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+      // TikTok Purchase Event
+      ttq.track('Purchase', {
+        contents: [
+          {
+            content_id: "product_123",
+            content_type: "product",
+            content_name: "Test Product"
+          }
+        ],
+        value: 99.99,
+        currency: "USD"
+      });
 
-ttq.track('AddToWishlist', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+      // LinkedIn Conversion Event
+      lintrk('track', { conversion_id: 123456 });
 
-ttq.track('Search', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>", // string. The 4217 currency code. Example: "USD".
-	"search_string": "<search_keywords>" // string. The word or phrase used to search. Example: "SAVE10COUPON".
-});
+      alert("Purchase event submitted!");
+    });
+  </script>
 
-ttq.track('AddPaymentInfo', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+  <!-- LinkedIn Insight Tag -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "9126866";
 
-ttq.track('AddToCart', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+    window._linkedin_data_partner_ids =
+      window._linkedin_data_partner_ids || [];
 
-ttq.track('InitiateCheckout', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
 
-ttq.track('PlaceAnOrder', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+  <script type="text/javascript">
+    (function(l) {
+      if (!l){
+        window.lintrk = function(a,b){
+          window.lintrk.q.push([a,b])
+        };
+        window.lintrk.q=[]
+      }
 
-ttq.track('CompleteRegistration', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
+      var s = document.getElementsByTagName("script")[0];
+      var b = document.createElement("script");
 
-ttq.track('Purchase', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
-	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
-});
-</script>
+      b.type = "text/javascript";
+      b.async = true;
+      b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
 
-	<script type="text/javascript">
-_linkedin_partner_id = "9126866";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=9126866&fmt=gif" />
-</noscript>
+      s.parentNode.insertBefore(b, s);
+
+    })(window.lintrk);
+  </script>
+
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none;"
+      alt=""
+      src="https://px.ads.linkedin.com/collect/?pid=9126866&fmt=gif"
+    />
+  </noscript>
+
 </body>
 </html>
